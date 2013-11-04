@@ -7,10 +7,14 @@
 
 
 /*
-Autor.....: Rafael Xavier - TOTVS
-Data......: 24/07/13
-Descrição.: WebService Modal
+
+	Autor.....: Rafael Xavier - TOTVS
+	Data......: 24/07/13
+	Descrição.: WebService Modal
+
 */
+
+// Vicente Lima - Ajustes na inicialização do ambiente
 
 WSSERVICE WSMODAL DESCRIPTION "WebService para integração com o modal. Recebimento de OS´s."
 
@@ -52,30 +56,42 @@ ENDWSSTRUCT
 WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVencimento1,nParcela1,cVencimento2,nParcela2,;
                                     cVencimento3,nParcela3,cVencimento4,nParcela4,cProduto,cDetalhes,nQuant,nValor,nDesc,cAcao;
                                     WSSEND Retorno WSSERVICE WSMODAL
-
 	
 	Local lRetorno	:= .T.
-	Local aCabec := {}
-	Local aItens := {}
-	Local nOpc	   := IIF (::cAcao=="I",3,5)
-	Local cDoc := GetSxeNum("SC5","C5_NUM")
+	
+	Local aCabec 	:= {}
+	Local aItens 	:= {}
+	
+	Local nOpc	   	:= IIF (::cAcao == "I",3,5)
+	
+	Local cDoc 		:= ""
+
 	Private lMsHelpAuto		:= .T.
 	Private lMsErroAuto		:= .F.
-	PRIVATE lAutoErrNoFile   := .T.
-	PRIVATE cErroLog:= ""
+	PRIVATE lAutoErrNoFile  := .T.
+
+	PRIVATE cErroLog		:= ""
+
 	::Retorno := WsClassNew("_RETMODAL")
 	
-	//falta fazer prepare enviroment
 	RESET ENVIRONMENT
-	IF !RPCSetEnv(cEmp,cFil,,,"FAT","",{})
+	
+	RpcSetType(3)
+
+	IF !RPCSetEnv(cEmp,cFil,,,"FAT")
 		
-		::Retorno:bERRO:=.T.
-		::Retorno:cObs:="Problemas na abertura de empresa/Filial. Favor informar a TI da empresa."
+		::Retorno:bERRO	:= .T.
+
+		::Retorno:cObs	:= "Problemas na abertura de empresa/Filial. Favor informar a TI da empresa."
 		
 		RETURN .T.
+
 	ENDIF
 	
-	//falta implementar a Exclusão. A busca será pelo numero da OS?
+	cDoc := GetSxeNum("SC5","C5_NUM")
+	
+	// falta implementar a Exclusão. A busca será pelo numero da OS?
+
 	IF nOpc == 5
 		cQuery 	:= "SELECT C5_NUM, C6_QTDLIB FROM "+RETSQLNAME("SC5")+" SC5,"+RETSQLNAME("SC6")+" SC6 "
 		cQuery 	+= "WHERE C5_YNUMOS='"+::cNumOS+"' AND C5_YORIGEM='M' AND C6_FILIAL=C5_FILIAL AND C6_NUM=C5_NUM AND C5_FILIAL='"+::cFil+"' AND SC5.D_E_L_E_T_=' ' AND SC6.D_E_L_E_T_=' ' "
