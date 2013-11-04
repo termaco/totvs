@@ -20,7 +20,7 @@
 // ---------+-------------------+-----------------------------------------------------------
 // #########################################################################################
 
-User Function ImpFolha
+User Function ImpFolhe
 
 	// ######################################################
 	//		Variaveis
@@ -635,33 +635,33 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_NOME")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_NOME"
 			EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_ENDEREC")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_ENDEREC"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_COMPLEM")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_COMPLEM"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_BAIRRO")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_BAIRRO"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_MUNICIP")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_MUNICIP"  
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_ESTADO")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_ESTADO"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CEP")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_CEP"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TELEFON")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_TELEFON"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_PAI")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_PAI"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_MAE")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_MAE"
-			//EndIf			
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_ENDEREC")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_ENDEREC"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_COMPLEM")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_COMPLEM"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_BAIRRO")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_BAIRRO"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_MUNICIP")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_MUNICIP"  
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_ESTADO")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_ESTADO"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CEP")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_CEP"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TELEFON")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_TELEFON"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_PAI")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_PAI"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_MAE")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_MAE"
+			EndIf			
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_NATURAL")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_NATURAL"
 			EndIf 
@@ -692,9 +692,9 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CTDPFGT")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_CTDPFGT"
 			EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_SITFOLH")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_SITFOLH"
-			//EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_SITFOLH")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_SITFOLH"
+			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_HRSMES")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_HRSMES"
 			EndIf
@@ -710,9 +710,9 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TIPOPGT")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_TIPOPGT"
 			EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_SALARIO")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_SALARIO"
-			//EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_SALARIO")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_SALARIO"
+			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TIPOADM")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_TIPOADM"
 			EndIf
@@ -722,100 +722,99 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_GRINRAI")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_GRINRAI"
 			EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CARGO")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_CARGO"
-			//EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CARGO")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_CARGO"
+			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_HOPARC")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_HOPARC"
 			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_COMPSAB")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_COMPSAB"
 			EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CIC")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_CIC"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_PIS")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_PIS"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_RG")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_RG"
-			//EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CIC")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_CIC"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_PIS")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_PIS"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_RG")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_RG"
+			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_NUMCP")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_NUMCP"
 			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_SERCP")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_SERCP"
 			EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_UFCP")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_UFCP"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_HABILIT")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_HABILIT"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_RESERVI")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_RESERVI"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TITULOE")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_TITULOE"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_NOMECMP")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_NOMECMP"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_ZONASEC")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_ZONASEC"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DEPIR")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_DEPIR"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DEPSF")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_DEPSF"
-			//EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_UFCP")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_UFCP"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_HABILIT")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_HABILIT"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_RESERVI")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_RESERVI"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TITULOE")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_TITULOE"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_NOMECMP")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_NOMECMP"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_ZONASEC")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_ZONASEC"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DEPIR")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_DEPIR"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DEPSF")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_DEPSF"
+			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_ADTPOSE")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_ADTPOSE"
 			EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CESTAB")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_CESTAB"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CHAPA")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_CHAPA"
-			//EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CESTAB")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_CESTAB"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CHAPA")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_CHAPA"
+			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TNOTRAB")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RA_TNOTRAB"
 			EndIf				
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CRACHA")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_CRACHA"
-			//EndIf			
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DEFIFIS")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_DEFIFIS"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_RACACOR")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_RACACOR"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_EMAIL")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_EMAIL"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TPDEFFI")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_TPDEFFI"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DTCPEXP")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_DTCPEXP"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DTRGEXP")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_DTRGEXP"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_RGEXP")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_RGEXP"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_NUMINSC")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_NUMINSC"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TIPOALT")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_TIPOALT"
-			//EndIf
-			//If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DATAALT")) })	== 0
-			//	cRet += IIf(Empty(cRet),"","/")+"RA_DATAALT"
-			//EndIf
-			
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_CRACHA")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_CRACHA"
+			EndIf			
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DEFIFIS")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_DEFIFIS"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_RACACOR")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_RACACOR"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_EMAIL")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_EMAIL"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TPDEFFI")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_TPDEFFI"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DTCPEXP")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_DTCPEXP"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DTRGEXP")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_DTRGEXP"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_RGEXP")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_RGEXP"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_NUMINSC")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_NUMINSC"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_TIPOALT")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_TIPOALT"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RA_DATAALT")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RA_DATAALT"
+			EndIf			
 			
 			Case cCdAlias == "SRQ"
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RQ_FILIAL")) })	== 0
@@ -1064,9 +1063,9 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_TIPAMED")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RB_TIPAMED"
 			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_CODAMED")) })	== 0
+		/*	If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_CODAMED")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RB_CODAMED"
-			EndIf
+			EndIf*/
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_VBDESAM")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RB_VBDESAM"
 			EndIf
@@ -1082,9 +1081,9 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_TPASODO")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RB_TPASODO"
 			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_ASODONT")) })	== 0
+			/*If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_ASODONT")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RB_ASODONT"
-			EndIf
+			EndIf*/
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_VBDESAO")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RB_VBDESAO"
 			EndIf
@@ -1101,7 +1100,7 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 				cRet += IIf(Empty(cRet),"","/")+"RB_VLRCRE"
 			EndIf	
 			
-			Case cCdAlias == "SR8"
+					Case cCdAlias == "SR8"
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_FILIAL")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"R8_FILIAL"
 			EndIf
@@ -1119,22 +1118,31 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_DATAINI")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"R8_DATAINI"
-			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_GRAUPAR")) })	== 0
-				cRet += IIf(Empty(cRet),"","/")+"RB_GRAUPAR"
-			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_TIPIR")) })	== 0
-				cRet += IIf(Empty(cRet),"","/")+"RB_TIPIR"
-			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_TIPSF")) })	== 0
-				cRet += IIf(Empty(cRet),"","/")+"RB_TIPSF"
-			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_LOCNASC")) })	== 0
-				cRet += IIf(Empty(cRet),"","/")+"RB_LOCNASC"
-			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RB_CARTORI")) })	== 0
-				cRet += IIf(Empty(cRet),"","/")+"RB_CARTORI"
 			EndIf			
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_DATAFIM")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R8_DATAFIM"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_AFARAIS")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R8_AFARAIS"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_CODCAT")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R8_CODCAT"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_DTCAT")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R8_DTCAT"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_CONTINU")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R8_CONTINU"
+			EndIf	
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_CONTAFA")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R8_CONTAFA"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_DURACAO")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R8_DURACAO"
+			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R8_CID")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R8_CID"
+			EndIf				
 		
 			Case cCdAlias == "SR3"
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R3_FILIAL")) })	== 0
@@ -1146,6 +1154,11 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R3_DATA")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"R3_DATA"
 			EndIf
+
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R3_SEQ")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"R3_SEQ"
+			EndIf
+
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("R3_TIPO")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"R3_TIPO"
 			EndIf
@@ -1183,6 +1196,9 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_PD")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RD_PD"
 			EndIf
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_SEQ")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RD_SEQ"
+			EndIf
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_TIPO1")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RD_TIPO1"
 			EndIf
@@ -1192,12 +1208,18 @@ Static Function ImpVldCols(cCdAlias,aHeader)
 			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_VALOR")) })	== 0
 				cRet += IIf(Empty(cRet),"","/")+"RD_VALOR"
 			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_DATAARQ")) })	== 0
-				cRet += IIf(Empty(cRet),"","/")+"RD_DATAARQ"
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_DATARQ")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RD_DATARQ"
 			EndIf
-			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_DATAPGT")) })	== 0
-				cRet += IIf(Empty(cRet),"","/")+"RD_DATAPGT"
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_DATPGT")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RD_DATPGT"
 			EndIf		
+			
+			If AScan(aHeader,{|x| Upper(AllTrim(x)) == Upper(Alltrim("RD_TIPO2")) })	== 0
+				cRet += IIf(Empty(cRet),"","/")+"RD_TIPO2"
+			EndIf
+		
+
 
 	EndCase
 
@@ -1446,10 +1468,10 @@ Static Function ImpObrigat(cCdAlias,aCols,aHeader)
 			If Empty(RetCol("RD_VALOR",aCols,aHeader))
 				cRet += " / Coluna RD_VALOR esta vazia! "
 			EndIf
-			If Empty(RetCol("RD_DATAARQ",aCols,aHeader))
+			If Empty(RetCol("RD_DATARQ",aCols,aHeader))
 				cRet += " / Coluna RD_DATAARQ esta vazia! "
 			EndIf
-			If Empty(RetCol("RD_DATAPGT",aCols,aHeader))
+			If Empty(RetCol("RD_DATPGT",aCols,aHeader))
 				cRet += " / Coluna RD_DATAPGT esta vazia! "
 			EndIf	 			
 
@@ -1520,18 +1542,21 @@ Static Function ImpGrava(cCdAlias,cRotina,aCols,aHeader)
 		// ######################################################
 	
 		DbSelectArea(cCdAlias)
-	
+		
+		cFilAnt := aReg[1][2]
 		cRotAuto := "MSExecAuto({|x,y,k,w|" +cRotina+"(x,y,k,w)},NIL,NIL,aReg,3)"
 		&cRotAuto
-	
+		
 		If lMsErroAuto
 			MostraErro( GetSrvProfString("Startpath","") , cArqErro )
 			cMsg := MemoRead(  GetSrvProfString("Startpath","") + '\' + cArqErro )
 		Else
-			RecLock("SRA",.F.)
-	    	SRA->RA_FILIAL := aReg[1][2]
-	      	Msunlock()
-			 
+			/*RecLock("SRA",.F.)
+	    	SRA->RA_FILIAL := aReg[1][2]	    	
+	    	  
+	    	 msunlock() 
+	    	 
+	      SRA->(Msunlock())*/
 			lOk := .T.
 		EndIf
 	
@@ -1564,7 +1589,7 @@ Static Function ImpGrava(cCdAlias,cRotina,aCols,aHeader)
 			lOk := .T.
 		EndIf*/
 	
-	ElseIf cCdAlias$"SRJ,SRQ,SRF,SR7,SR3,SRD,SR8"
+	ElseIf cCdAlias$"SRJ,SRQ,SRF,SR7,SR3,SRD,SR8,SRB"
 	
 		// ######################################################
 		//		Chamada da rotina RecLock
@@ -1572,7 +1597,7 @@ Static Function ImpGrava(cCdAlias,cRotina,aCols,aHeader)
 		RecLock(cCdAlias,.T.)
 		For nCont:=1 to Len(aHeader)
 			(cCdAlias)->(&(aHeader[nCont])) := aReg[nCont][2]
-		Next
+		Next  
 		MsUnLock()
 		
 		lOk := .T.
