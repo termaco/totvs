@@ -16,7 +16,7 @@
 
 // Vicente Lima - Ajustes na inicialização do ambiente
 
-WSSERVICE WSMODAL DESCRIPTION "WebService para integração com o modal. Recebimento de OS´s."
+WSSERVICE WSMODAL DESCRIPTION "WebService para integração com o modal e cargas. Recebimento de OSs."
 
 	WSDATA cEmp            AS String
 	WSDATA cFil			AS String
@@ -37,6 +37,7 @@ WSSERVICE WSMODAL DESCRIPTION "WebService para integração com o modal. Recebimen
 	WSDATA nValor			AS Float
 	WSDATA nDesc			AS Float OPTIONAL
 	WSDATA cAcao		    AS String
+	WSDATA cTipo		    AS String OPTIONAL
 	
 	WSDATA Retorno		   AS _RETMODAL
 
@@ -54,7 +55,7 @@ ENDWSSTRUCT
 
 
 WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVencimento1,nParcela1,cVencimento2,nParcela2,;
-                                    cVencimento3,nParcela3,cVencimento4,nParcela4,cProduto,cDetalhes,nQuant,nValor,nDesc,cAcao;
+                                    cVencimento3,nParcela3,cVencimento4,nParcela4,cProduto,cDetalhes,nQuant,nValor,nDesc,cAcao,cTipo;
                                     WSSEND Retorno WSSERVICE WSMODAL
 	
 	Local lRetorno	:= .T.
@@ -71,14 +72,19 @@ WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVen
 	PRIVATE lAutoErrNoFile  := .T.
 
 	PRIVATE cErroLog		:= ""
-
+	Default ::cTipo			:= "M"
+	If !(::cTipo $ "M|C")
+		::Retorno:bERRO	:= .T.
+		::Retorno:cObs	:= "Tipo enviar M-Modal, C-Cargas "
+		Return .T.
+	EndIF
 	::Retorno := WsClassNew("_RETMODAL")
 	
 	RESET ENVIRONMENT
 	
 	RpcSetType(3)
 
-	IF !RPCSetEnv(cEmp,cFil,,,"FAT")
+	IF !RPCSetEnv(cEmp,cFil,"JOB",,"FAT")
 		
 		::Retorno:bERRO	:= .T.
 
@@ -88,18 +94,22 @@ WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVen
 
 	ENDIF
 	
-	cDoc := GetSxeNum("SC5","C5_NUM")
+	//cDoc := GetSxeNum("SC5","C5_NUM")
 	
 	// falta implementar a Exclusão. A busca será pelo numero da OS?
 
-	IF nOpc == 5
-		cQuery 	:= "SELECT C5_NUM, C6_QTDLIB FROM "+RETSQLNAME("SC5")+" SC5,"+RETSQLNAME("SC6")+" SC6 "
-		cQuery 	+= "WHERE C5_YNUMOS='"+::cNumOS+"' AND C5_YORIGEM='M' AND C6_FILIAL=C5_FILIAL AND C6_NUM=C5_NUM AND C5_FILIAL='"+::cFil+"' AND SC5.D_E_L_E_T_=' ' AND SC6.D_E_L_E_T_=' ' "
-		
-		
-		TcQuery cQuery New Alias T02
+	cQuery 	:= "SELECT C5_NUM, C6_QTDLIB FROM "+RETSQLNAME("SC5")+" SC5,"+RETSQLNAME("SC6")+" SC6 "
+	cQuery 	+= "WHERE C5_YNUMOS='"+::cNumOS+"' AND C5_YORIGEM='"+::cTipo+"' AND C6_FILIAL=C5_FILIAL AND C6_NUM=C5_NUM AND C5_FILIAL='"+::cFil+"' AND SC5.D_E_L_E_T_=' ' AND SC6.D_E_L_E_T_=' ' "
+	TcQuery cQuery New Alias T02
+	If nOpc == 3	//Incluir
+		IF T02->(!EOF())
+			::Retorno:bERRO:=.T.
+			::Retorno:cObs:="OS já cadastrada! Verifique: "+::cNumOS
+			T02->(dbclosearea())
+			RETURN .T.
+		EndIf
+	Else//IF nOpc == 5	//Excluir
 		IF T02->(EOF())
-		
 			::Retorno:bERRO:=.T.
 			::Retorno:cObs:="OS não encontrada! Verifique: "+::cNumOS
 			T02->(dbclosearea())
@@ -108,28 +118,25 @@ WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVen
 		cDoc:=T02->C5_NUM
 		//caso não consiga alterar manda e-mail para um grupo de pessoas
 		If T02->C6_QTDLIB>0
-			cEmail:=getmvpar("MV_YMAIMOD")
+			cEmail:=If(::cTipo=="M",getmvpar("MV_YMAIMOD"),getmvpar("MV_YMAICARG"))
 			::Retorno:bERRO:=.T.
 			::Retorno:cObs:="OS não poderá ser excluida pois já foi liberada para Faturamento! Verifique: "+::cNumOS
-			EnviaMail(cEmail,"","Tentativa de Exclusão de OS Modal - OS Num:"+::cNumOS,"Atenção:A OS do Modal está tentando ser excluida!","")
+			EnviaMail(cEmail,"","Tentativa de Exclusão de OS "+If(::cTipo=="M","Modal","Cargas")+" - OS Num:"+::cNumOS,"Atenção:A OS do "+If(::cTipo=="M","Modal","Cargas")+" está tentando ser excluida!","")
 			T02->(dbclosearea())
 			RETURN .T.
-		
 		ENDIF
-		T02->(dbclosearea())	
 	endif	
+	T02->(dbclosearea())	
 	DBSELECTAREA("SA1")
 	DBSETORDER(3)
 	IF !DBSEEK(XFILIAL("SA1")+::cCnpjCliente)
-	
 		::Retorno:bERRO:=.T.
 		::Retorno:cObs:="CNPJ não encontrado na base de cliente: "+::cCnpjCliente
-		
 		RETURN .T.
 	ENDIF
 	
 	cQuery 	:= "SELECT B1_COD,B1_TS FROM "+RETSQLNAME("SB1")+" SB1 "
-	cQuery 	+= "WHERE B1_FILIAL='"+xFilial("SB1")+"' AND B1_YCODINT='"+::cProduto+"' AND SB1.D_E_L_E_T_=' ' AND B1_YTPCOD='M' "
+	cQuery 	+= "WHERE B1_FILIAL='"+xFilial("SB1")+"' AND B1_YCODINT='"+::cProduto+"' AND SB1.D_E_L_E_T_=' ' AND B1_YTPCOD='"+::cTipo+"' "
 	
 	TcQuery cQuery New Alias T01
 	IF T01->(EOF())
@@ -140,8 +147,9 @@ WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVen
 		RETURN .T.
 	ENDIF
 	
-	
-	aadd(aCabec,{"C5_NUM",cDoc,Nil})
+	IF nOpc == 5
+		aadd(aCabec,{"C5_NUM",cDoc,Nil})
+	EndIf
 	aadd(aCabec,{"C5_TIPO","N",Nil})
 	aadd(aCabec,{"C5_CLIENTE",SA1->A1_COD,Nil})
 	aadd(aCabec,{"C5_LOJACLI",SA1->A1_LOJA,Nil})
@@ -158,7 +166,7 @@ WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVen
 	aadd(aCabec,{"C5_DATA4",stod(::cVencimento4),Nil})
 	aadd(aCabec,{"C5_MENNOTA",::cDetalhes,Nil})
 	aadd(aCabec,{"C5_YNUMOS",::cNumOS,Nil})//Campo Customizado
-	aadd(aCabec,{"C5_YORIGEM","M",Nil})//Campo Customizado
+	aadd(aCabec,{"C5_YORIGEM",::cTipo,Nil})//Campo Customizado
 	aadd(aCabec,{"C5_YDTOS",stod(::cDtFechamento),Nil})//Campo Customizado
 	
 	
@@ -166,7 +174,7 @@ WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVen
 	aLinha := {}		
 	aadd(aLinha,{"LINPOS","C6_ITEM",StrZero(1,2)})
 	aadd(aLinha,{"AUTDELETA","N",Nil})
-	aadd(aLinha,{"C6_PRODUTO",SB1->B1_COD,Nil})
+	aadd(aLinha,{"C6_PRODUTO",T01->B1_COD,Nil})
 	aadd(aLinha,{"C6_QTDVEN",::nQuant,Nil})
 	aadd(aLinha,{"C6_PRCVEN",::nValor,Nil})
 //	aadd(aLinha,{"C6_VALOR",(::nQuant*::nValor),Nil})
@@ -189,8 +197,9 @@ WSMETHOD RECEBEPEDIDO WSRECEIVE cEmp,cFil,cNumOS,cDtFechamento,cCnpjCliente,cVen
 					::Retorno:cObs:=cErroLog
 
 				Else
+					ConfirmSX8()
 					::Retorno:bERRO:=.F.
-					::Retorno:cObs:=cDoc
+					::Retorno:cObs:=SC5->C5_NUM
 				Endif	
 		
 T01->(Dbclosearea())

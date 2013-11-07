@@ -34,7 +34,7 @@ ENDWSSTRUCT
 WSMETHOD ConsultaCliente WSRECEIVE c_Empresa,c_Filial,c_Cnpj WSSEND Retorno WSSERVICE YCLIENTE
 RESET ENVIRONMENT
 RpcSetType(3)
-RPCSetEnv(::c_Empresa,::c_Filial,,,'FAT')
+RPCSetEnv(::c_Empresa,::c_Filial,"JOB",,'FAT')
 
 ::Retorno	:= WsClassNew("YCliente_Retorno")
 ::Retorno:bErro	:= .F.

@@ -66,7 +66,7 @@ Else
 EndIf
 oTGet1	:= TGet():New( 01,005,{|u|if(Pcount()>0,(cDesc:=u,Atualizar(),oBrows:GoPosition(1)),cDesc)},oPanelTop1,219,009,;
           GetSx3Cache(aOrdem[oCombo1:nAt],"X3_PICTURE"),,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cDesc,,,, )
-aItens						:= MontarArray()
+Processa({|| MontarArray(@aItens) },"Montando Consulta","Aguarde...",.T.)
 oBrows	:= TcBrowse():New( 031,003,318,159,,aCabec,,oPanelTop2,/*cField*/,/*cTopFun*/,/*cBotFun*/,{||  },/*bViewReg*/,,,,,,, .F.,/*"TRB"*/, .T.,, .F., , ,.f. )
 oBrows:align				:= CONTROL_ALIGN_ALLCLIENT
 
@@ -81,7 +81,7 @@ oTButton2 := TButton():Create( oPanelTop3,01,45,"Cancelar",{||oDlg:End() },40,10
 // Ativa diálogo centralizado
 oDlg:Activate(,,,.T., )
 RestArea(aArea)
-If ValType(xRet)=="C" .AND. xRet=="-"
+If ValType(xRet)=="C" .AND. (xRet=="-" .OR. xRet=="Sem dados!")
 	lRet	:= .F.
 EndIf
 Return(lRet)
@@ -104,7 +104,7 @@ oBrows:GoPosition(1)
 Return
 
 Static Function Atualizar()
-	aItens	:= MontarArray()
+	Processa({|| MontarArray(@aItens) },"Montando Consulta","Aguarde...",.T.)
 	oBrows:SetArray(aItens)
 	oBrows:ResetLen()
 	oBrows:bLine := { || aItens[ oBrows:nAT ] }
@@ -113,7 +113,7 @@ Static Function Atualizar()
 	oBrows:Refresh()
 Return
 
-Static function MontarArray()
+Static function MontarArray(aItens)
 Local aArray	:= {}
 Local _cQuery
 Local nTamArray
@@ -155,4 +155,5 @@ If Empty(aCabec)				//Se não enviado cabeçario, monta a parti do SX3
 	Next
 EndIf
 TMPARRAY->(DbCloseArea())
+aItens	:= aClone(aArray)
 Return aArray
